@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sql," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="宫商角徵" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="函数 decode(col, codition, rt1, rt2): 如果与codition相同返回结果1否则返回结果2decode(to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;) , &amp;#39;2013-10-14&amp;#39;, to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;), 0) nvl(col, ‘’)：">
+<meta name="keywords" content="sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql需要基本使用">
+<meta property="og:url" content="http://yoursite.com/2018/04/01/sql需要基本使用/index.html">
+<meta property="og:site_name" content="宫商角徵">
+<meta property="og:description" content="函数 decode(col, codition, rt1, rt2): 如果与codition相同返回结果1否则返回结果2decode(to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;) , &amp;#39;2013-10-14&amp;#39;, to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;), 0) nvl(col, ‘’)：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-01T13:05:46.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql需要基本使用">
+<meta name="twitter:description" content="函数 decode(col, codition, rt1, rt2): 如果与codition相同返回结果1否则返回结果2decode(to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;) , &amp;#39;2013-10-14&amp;#39;, to_char(app_work_time, &amp;#39;YYYY-MM-DD&amp;#39;), 0) nvl(col, ‘’)：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/01/sql需要基本使用/"/>
+
+
+
+
+
+  <title>sql需要基本使用 | 宫商角徵</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/dj978819220"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">i
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">宫商角徵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/sql需要基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="changfeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宫商角徵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sql需要基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T21:05:03+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>decode(col, codition, rt1, rt2): 如果与codition相同返回结果1否则返回结果2<br><code>decode(to_char(app_work_time, &#39;YYYY-MM-DD&#39;) , &#39;2013-10-14&#39;, to_char(app_work_time, &#39;YYYY-MM-DD&#39;), 0)</code></li>
+<li>nvl(col, ‘’)： 判断当前数据是否为空</li>
+</ul>
+<h2 id="最简单的创表语句"><a href="#最简单的创表语句" class="headerlink" title="最简单的创表语句"></a>最简单的创表语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> moudlename.tablename(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line">    <span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> <span class="keyword">identity</span>(<span class="number">1</span>,<span class="number">1</span>),</span><br><span class="line">    stuName <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    passsword <span class="built_in">varchar</span>(<span class="number">20</span>)</span><br><span class="line">    )</span><br><span class="line"><span class="comment">--增</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> tjfx.student <span class="keyword">values</span>(<span class="number">4</span>, <span class="string">'dj'</span>, <span class="string">'123'</span>)</span><br><span class="line">    <span class="comment">--从其他表插入</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span>  jkxx.t_devrecord_equipmenttest(<span class="keyword">id</span>, equipid, equipname)  <span class="keyword">select</span> top <span class="number">90</span> guid, equip_id, equip_name <span class="keyword">from</span> equip.t_equipinfo;</span><br><span class="line"><span class="comment">-- 删</span></span><br><span class="line">    <span class="keyword">delete</span> tjfx.student <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">-- 改</span></span><br><span class="line">    <span class="keyword">update</span> tjfx.student <span class="keyword">set</span> stuName = <span class="string">'dj1'</span></span><br><span class="line"><span class="comment">-- 查</span></span><br><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> tjfx.student</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 创建增删改查</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sample.test(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span>,</span><br><span class="line">    occur_time <span class="keyword">timestamp</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> sample.test <span class="keyword">values</span>(<span class="number">1</span>, <span class="keyword">now</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> sample.test</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>(), <span class="keyword">now</span>() <span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">substr</span>(<span class="keyword">now</span>(), <span class="number">1</span>, <span class="number">10</span>) <span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> sample.test <span class="keyword">where</span> to_char(occur_time, <span class="string">'YYYY-MM-DD'</span>)  = to_char(<span class="keyword">now</span>(), <span class="string">'YYYY-MM-DD'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><pre><code>DML触发器分为：
+
+1、 after触发器（之后触发）
+
+    a、 insert触发器
+
+    b、 update触发器
+
+    c、 delete触发器
+
+create trigger update_tigger on tjfx.student  after update
+as
+begin
+        print &apos;数据更新了！&apos;
+end
+存储过程
+create proc proc_getStudentRecord(
+    @id int, --默认输入参数
+    @name varchar(20) out, --输出参数
+    @age varchar(20) output--输入输出参数
+)
+as
+    select @name = name, @age = age  from student where id = @id and sex = @age;
+</code></pre><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><pre><code>CREATE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+</code></pre><h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><pre><code>create procedure p_name
+@pageSize int,
+@page int,
+@tableName varchar(10)
+as
+declare @temp int
+set @temp=@pageSize*(@page - 1)
+begin
+ select top (@pageSize) * from @tableName where gId not in (select top (@temp) gId from t_goods) order by gId
+end
+</code></pre><h2 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> <span class="string">"emsetl"</span>.<span class="string">"GUID"</span> <span class="keyword">return</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line">    <span class="keyword">str</span> <span class="built_in">varchar</span>(<span class="number">64</span>):=guid();</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">str</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><pre><code>普通索引 ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
+主键索引 ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )
+唯一索引 ALTER TABLE `table_name` ADD UNIQUE ( `column` )
+全文索引 ALTER TABLE `table_name` ADD FULLTEXT ( `column`)
+如何添加多列索引 ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
+</code></pre><h2 id="sql执行顺序"><a href="#sql执行顺序" class="headerlink" title="sql执行顺序"></a>sql执行顺序</h2><pre><code>8. SELECT (9)DISTINCT  (11)&lt;Top Num&gt; &lt;select list&gt;
+1. FROM [left_table]
+3. &lt;join_type&gt; JOIN &lt;right_table&gt;
+2. ON &lt;join_condition&gt;
+4. WHERE &lt;where_condition&gt;
+5. GROUP BY &lt;group_by_list&gt;
+6. WITH &lt;CUBE | RollUP&gt;
+7. HAVING &lt;having_condition&gt;
+10. ORDER BY &lt;order_by_list&gt;
+</code></pre><h2 id="数据库常用操作"><a href="#数据库常用操作" class="headerlink" title="数据库常用操作"></a>数据库常用操作</h2><ul>
+<li>包含这列的所有数据库表名<br>  SELECT table_name FROM all_col_comments WHERE column_name LIKE ‘%A%’;</li>
+</ul>
+<ul>
+<li><p>数据库插入列<br>  alter   table   表名   add   列名   数据类型<br>  如：alter   table   student   add   nickname   char(20)</p>
+</li>
+<li><p>数据库删除列<br>  ALTER TABLE 表名 DROP CONSTRAINT 默认约束名<br>  GO<br>  ALTER TABLE 表名   DROP COLUMN    字段名<br>  GO</p>
+</li>
+<li><p>外连接<br>  right join  表 on a表.字段 = b表.字段 右连存右 左连存左<br>  full outer join 全外连接</p>
+</li>
+<li><p>避免拼接的时候没有where语句<br>  开头加上where 1=1</p>
+</li>
+</ul>
+<ul>
+<li><p>把查询表当作新表<br>  1.<br>  select a.filed, b.num<br>  from  table_name a,(select count(*) as num from table_name b</p>
+<p>  2.<br>  with 别名 as 数据库查询语句<br>  with b as</p>
+<pre><code>(
+        select count(*) as num from table1_name
+)
+</code></pre><p>  select a.filed, b.num from table2_name a,b</p>
+</li>
+<li><p>虚表<br>  select ‘是’,’否’,Date() from dual</p>
+</li>
+</ul>
+<ul>
+<li>时间比较<br>  –and occur_time Between ‘2016-06-10 17:03:00’ And ‘2016-06-10 17:03:00’<br>  –and datediff(day,’2016-05-10’,’2016-05-11’)<br>  –and occur_time &gt; ‘2016-05-10’.toDate() and occur_time &lt; ‘2016-05-11’.toDate()<br>  and to_date(occur_time, ‘yyyy-mm-dd’)&gt;= to_date(‘2016-06-01’, ‘yyyy-mm-dd’)<br>  and to_date(occur_time, ‘yyyy-mm-dd’)&lt;= to_date(‘2016-06-01’, ‘yyyy-mm-dd’)</li>
+</ul>
+<ul>
+<li>给数据库表添加索引<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name ( <code>column</code> )</li>
+</ul>
+<h2 id="数据操作注意事项"><a href="#数据操作注意事项" class="headerlink" title="数据操作注意事项"></a>数据操作注意事项</h2><ul>
+<li>删除表的时候先删除外层再删除里层</li>
+<li>identity(1,1)表自动增长</li>
+<li>外模式-视图   模式-表 内模式-文件</li>
+<li>修改表<br>alter table tablename alter column colname newDataType<br>比如：alter table mytable alter column mycol1 int default 0</li>
+<li>实体设置编号 联系不用设置编号</li>
+</ul>
+<h2 id="表的行级拼接与列级拼接"><a href="#表的行级拼接与列级拼接" class="headerlink" title="表的行级拼接与列级拼接"></a>表的行级拼接与列级拼接</h2><ul>
+<li>行级拼接union all</li>
+</ul>
+<p>select * from A where …..</p>
+<p>union all</p>
+<p>select * from A where ……</p>
+<ul>
+<li>列级拼接union all</li>
+</ul>
+<p>select (select <em> as … from A where …..) as …, (select </em> as .. from B where ……) as ….<br>from dual</p>
+<ul>
+<li>数据库连接符号</li>
+</ul>
+<p>||</p>
+<h2 id="case-when-的两种写法"><a href="#case-when-的两种写法" class="headerlink" title="case when 的两种写法"></a>case when 的两种写法</h2><p>select case 列名 when 条件 then 结果 when .. then ..  end<br>select case when 条件 then 结果 when .. then .. end</p>
+<h2 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h2><pre><code>sum          求和
+count        记录条数
+avg          平均
+</code></pre><h2 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h2><pre><code>nvl(字段, 0) 判断是否为空如果为空就置0
+to_char(date, [fmt]) 时间转字符串
+to_date(&apos;1996-01-02&apos;) 字符串转日期
+</code></pre><h2 id="数据库查询语句"><a href="#数据库查询语句" class="headerlink" title="数据库查询语句"></a>数据库查询语句</h2><ol>
+<li>原样查出，然后需要转义的转义前后的数据都保留</li>
+<li>查询字段也保留</li>
+</ol>
+<blockquote>
+<p>mysql 查询语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `t_test`;</span><br><span class="line"></span><br><span class="line">update t_test set col5 = &apos;B&apos;</span><br><span class="line"></span><br><span class="line">create procedure setA()</span><br><span class="line">begin</span><br><span class="line">update t_test set col5 = &apos;A&apos;;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">create procedure setFlagById(in n int, in c char)</span><br><span class="line">begin</span><br><span class="line">update t_test set col5 = c where col1 = n;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">drop procedure setFlagById;</span><br><span class="line"></span><br><span class="line">call setFlagById(2, &apos;c&apos;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/linux基本使用/" rel="next" title="linux基本使用">
+                <i class="fa fa-chevron-left"></i> linux基本使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">changfeng</p>
+              <p class="site-description motion-element" itemprop="description">做一个用心的人</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的创表语句"><span class="nav-number">2.</span> <span class="nav-text">最简单的创表语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作"><span class="nav-number">3.</span> <span class="nav-text">数据库操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发器"><span class="nav-number">4.</span> <span class="nav-text">触发器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">5.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储过程"><span class="nav-number">6.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数创建"><span class="nav-number">7.</span> <span class="nav-text">函数创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">8.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql执行顺序"><span class="nav-number">9.</span> <span class="nav-text">sql执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库常用操作"><span class="nav-number">10.</span> <span class="nav-text">数据库常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据操作注意事项"><span class="nav-number">11.</span> <span class="nav-text">数据操作注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表的行级拼接与列级拼接"><span class="nav-number">12.</span> <span class="nav-text">表的行级拼接与列级拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#case-when-的两种写法"><span class="nav-number">13.</span> <span class="nav-text">case when 的两种写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚集函数"><span class="nav-number">14.</span> <span class="nav-text">聚集函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通函数"><span class="nav-number">15.</span> <span class="nav-text">普通函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库查询语句"><span class="nav-number">16.</span> <span class="nav-text">数据库查询语句</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">changfeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

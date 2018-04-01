@@ -295,6 +295,250 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/sql需要基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="changfeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宫商角徵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/01/sql需要基本使用/" itemprop="url">sql需要基本使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T21:05:03+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>decode(col, codition, rt1, rt2): 如果与codition相同返回结果1否则返回结果2<br><code>decode(to_char(app_work_time, &#39;YYYY-MM-DD&#39;) , &#39;2013-10-14&#39;, to_char(app_work_time, &#39;YYYY-MM-DD&#39;), 0)</code></li>
+<li>nvl(col, ‘’)： 判断当前数据是否为空</li>
+</ul>
+<h2 id="最简单的创表语句"><a href="#最简单的创表语句" class="headerlink" title="最简单的创表语句"></a>最简单的创表语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> moudlename.tablename(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line">    <span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span> <span class="keyword">identity</span>(<span class="number">1</span>,<span class="number">1</span>),</span><br><span class="line">    stuName <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    passsword <span class="built_in">varchar</span>(<span class="number">20</span>)</span><br><span class="line">    )</span><br><span class="line"><span class="comment">--增</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> tjfx.student <span class="keyword">values</span>(<span class="number">4</span>, <span class="string">'dj'</span>, <span class="string">'123'</span>)</span><br><span class="line">    <span class="comment">--从其他表插入</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span>  jkxx.t_devrecord_equipmenttest(<span class="keyword">id</span>, equipid, equipname)  <span class="keyword">select</span> top <span class="number">90</span> guid, equip_id, equip_name <span class="keyword">from</span> equip.t_equipinfo;</span><br><span class="line"><span class="comment">-- 删</span></span><br><span class="line">    <span class="keyword">delete</span> tjfx.student <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">-- 改</span></span><br><span class="line">    <span class="keyword">update</span> tjfx.student <span class="keyword">set</span> stuName = <span class="string">'dj1'</span></span><br><span class="line"><span class="comment">-- 查</span></span><br><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> tjfx.student</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 创建增删改查</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sample.test(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span>,</span><br><span class="line">    occur_time <span class="keyword">timestamp</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> sample.test <span class="keyword">values</span>(<span class="number">1</span>, <span class="keyword">now</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> sample.test</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>(), <span class="keyword">now</span>() <span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">substr</span>(<span class="keyword">now</span>(), <span class="number">1</span>, <span class="number">10</span>) <span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> sample.test <span class="keyword">where</span> to_char(occur_time, <span class="string">'YYYY-MM-DD'</span>)  = to_char(<span class="keyword">now</span>(), <span class="string">'YYYY-MM-DD'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><pre><code>DML触发器分为：
+
+1、 after触发器（之后触发）
+
+    a、 insert触发器
+
+    b、 update触发器
+
+    c、 delete触发器
+
+create trigger update_tigger on tjfx.student  after update
+as
+begin
+        print &apos;数据更新了！&apos;
+end
+存储过程
+create proc proc_getStudentRecord(
+    @id int, --默认输入参数
+    @name varchar(20) out, --输出参数
+    @age varchar(20) output--输入输出参数
+)
+as
+    select @name = name, @age = age  from student where id = @id and sex = @age;
+</code></pre><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><pre><code>CREATE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+</code></pre><h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><pre><code>create procedure p_name
+@pageSize int,
+@page int,
+@tableName varchar(10)
+as
+declare @temp int
+set @temp=@pageSize*(@page - 1)
+begin
+ select top (@pageSize) * from @tableName where gId not in (select top (@temp) gId from t_goods) order by gId
+end
+</code></pre><h2 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> <span class="string">"emsetl"</span>.<span class="string">"GUID"</span> <span class="keyword">return</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line">    <span class="keyword">str</span> <span class="built_in">varchar</span>(<span class="number">64</span>):=guid();</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">str</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><pre><code>普通索引 ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
+主键索引 ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )
+唯一索引 ALTER TABLE `table_name` ADD UNIQUE ( `column` )
+全文索引 ALTER TABLE `table_name` ADD FULLTEXT ( `column`)
+如何添加多列索引 ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
+</code></pre><h2 id="sql执行顺序"><a href="#sql执行顺序" class="headerlink" title="sql执行顺序"></a>sql执行顺序</h2><pre><code>8. SELECT (9)DISTINCT  (11)&lt;Top Num&gt; &lt;select list&gt;
+1. FROM [left_table]
+3. &lt;join_type&gt; JOIN &lt;right_table&gt;
+2. ON &lt;join_condition&gt;
+4. WHERE &lt;where_condition&gt;
+5. GROUP BY &lt;group_by_list&gt;
+6. WITH &lt;CUBE | RollUP&gt;
+7. HAVING &lt;having_condition&gt;
+10. ORDER BY &lt;order_by_list&gt;
+</code></pre><h2 id="数据库常用操作"><a href="#数据库常用操作" class="headerlink" title="数据库常用操作"></a>数据库常用操作</h2><ul>
+<li>包含这列的所有数据库表名<br>  SELECT table_name FROM all_col_comments WHERE column_name LIKE ‘%A%’;</li>
+</ul>
+<ul>
+<li><p>数据库插入列<br>  alter   table   表名   add   列名   数据类型<br>  如：alter   table   student   add   nickname   char(20)</p>
+</li>
+<li><p>数据库删除列<br>  ALTER TABLE 表名 DROP CONSTRAINT 默认约束名<br>  GO<br>  ALTER TABLE 表名   DROP COLUMN    字段名<br>  GO</p>
+</li>
+<li><p>外连接<br>  right join  表 on a表.字段 = b表.字段 右连存右 左连存左<br>  full outer join 全外连接</p>
+</li>
+<li><p>避免拼接的时候没有where语句<br>  开头加上where 1=1</p>
+</li>
+</ul>
+<ul>
+<li><p>把查询表当作新表<br>  1.<br>  select a.filed, b.num<br>  from  table_name a,(select count(*) as num from table_name b</p>
+<p>  2.<br>  with 别名 as 数据库查询语句<br>  with b as</p>
+<pre><code>(
+        select count(*) as num from table1_name
+)
+</code></pre><p>  select a.filed, b.num from table2_name a,b</p>
+</li>
+<li><p>虚表<br>  select ‘是’,’否’,Date() from dual</p>
+</li>
+</ul>
+<ul>
+<li>时间比较<br>  –and occur_time Between ‘2016-06-10 17:03:00’ And ‘2016-06-10 17:03:00’<br>  –and datediff(day,’2016-05-10’,’2016-05-11’)<br>  –and occur_time &gt; ‘2016-05-10’.toDate() and occur_time &lt; ‘2016-05-11’.toDate()<br>  and to_date(occur_time, ‘yyyy-mm-dd’)&gt;= to_date(‘2016-06-01’, ‘yyyy-mm-dd’)<br>  and to_date(occur_time, ‘yyyy-mm-dd’)&lt;= to_date(‘2016-06-01’, ‘yyyy-mm-dd’)</li>
+</ul>
+<ul>
+<li>给数据库表添加索引<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name ( <code>column</code> )</li>
+</ul>
+<h2 id="数据操作注意事项"><a href="#数据操作注意事项" class="headerlink" title="数据操作注意事项"></a>数据操作注意事项</h2><ul>
+<li>删除表的时候先删除外层再删除里层</li>
+<li>identity(1,1)表自动增长</li>
+<li>外模式-视图   模式-表 内模式-文件</li>
+<li>修改表<br>alter table tablename alter column colname newDataType<br>比如：alter table mytable alter column mycol1 int default 0</li>
+<li>实体设置编号 联系不用设置编号</li>
+</ul>
+<h2 id="表的行级拼接与列级拼接"><a href="#表的行级拼接与列级拼接" class="headerlink" title="表的行级拼接与列级拼接"></a>表的行级拼接与列级拼接</h2><ul>
+<li>行级拼接union all</li>
+</ul>
+<p>select * from A where …..</p>
+<p>union all</p>
+<p>select * from A where ……</p>
+<ul>
+<li>列级拼接union all</li>
+</ul>
+<p>select (select <em> as … from A where …..) as …, (select </em> as .. from B where ……) as ….<br>from dual</p>
+<ul>
+<li>数据库连接符号</li>
+</ul>
+<p>||</p>
+<h2 id="case-when-的两种写法"><a href="#case-when-的两种写法" class="headerlink" title="case when 的两种写法"></a>case when 的两种写法</h2><p>select case 列名 when 条件 then 结果 when .. then ..  end<br>select case when 条件 then 结果 when .. then .. end</p>
+<h2 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h2><pre><code>sum          求和
+count        记录条数
+avg          平均
+</code></pre><h2 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h2><pre><code>nvl(字段, 0) 判断是否为空如果为空就置0
+to_char(date, [fmt]) 时间转字符串
+to_date(&apos;1996-01-02&apos;) 字符串转日期
+</code></pre><h2 id="数据库查询语句"><a href="#数据库查询语句" class="headerlink" title="数据库查询语句"></a>数据库查询语句</h2><ol>
+<li>原样查出，然后需要转义的转义前后的数据都保留</li>
+<li>查询字段也保留</li>
+</ol>
+<blockquote>
+<p>mysql 查询语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `t_test`;</span><br><span class="line"></span><br><span class="line">update t_test set col5 = &apos;B&apos;</span><br><span class="line"></span><br><span class="line">create procedure setA()</span><br><span class="line">begin</span><br><span class="line">update t_test set col5 = &apos;A&apos;;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">create procedure setFlagById(in n int, in c char)</span><br><span class="line">begin</span><br><span class="line">update t_test set col5 = c where col1 = n;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">drop procedure setFlagById;</span><br><span class="line"></span><br><span class="line">call setFlagById(2, &apos;c&apos;);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/linux基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -532,7 +776,7 @@ whereis name
 <p>#!/bin/sh<br>exec tail -n +3 $0</p>
 <h1 id="This-file-provides-an-easy-way-to-add-custom-menu-entries-Simply-type-the"><a href="#This-file-provides-an-easy-way-to-add-custom-menu-entries-Simply-type-the" class="headerlink" title="This file provides an easy way to add custom menu entries.  Simply type the"></a>This file provides an easy way to add custom menu entries.  Simply type the</h1><h1 id="menu-entries-you-want-to-add-after-this-comment-Be-careful-not-to-change"><a href="#menu-entries-you-want-to-add-after-this-comment-Be-careful-not-to-change" class="headerlink" title="menu entries you want to add after this comment.  Be careful not to change"></a>menu entries you want to add after this comment.  Be careful not to change</h1><h1 id="the-‘exec-tail’-line-above"><a href="#the-‘exec-tail’-line-above" class="headerlink" title="the ‘exec tail’ line above."></a>the ‘exec tail’ line above.</h1><p>menuentry ‘Windows7’{<br>set root=(hd0,1)<br>chainloader +1<br>}</p>
 <p>$ grub2-mkconfig -o /boot/grub2/grub.cfg<br>$ reboot</p>
-<h3 id="linux设置开机启动顺序"><a href="#linux设置开机启动顺序" class="headerlink" title="linux设置开机启动顺序"></a>linux设置开机启动顺序</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 安装linux系统</span><br><span class="line"></span><br><span class="line">a. vmlinuz initrd=initrd.img linux dd quiet</span><br><span class="line">b. vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意： 如果遇到uefi 启动必须改成legacy</span><br><span class="line"></span><br><span class="line">/var 5G</span><br><span class="line">/home 10G</span><br><span class="line">/usr 4G</span><br><span class="line">/ 39G</span><br><span class="line">2. 修改40_custom 重建引导</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> sudo vi /etc/grub.d/40_custom</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">exec tail -n +3 $0</span><br><span class="line"><span class="meta">#</span> This file provides an easy way to add custom menu entries.  Simply type the</span><br><span class="line"><span class="meta">#</span> menu entries you want to add after this comment.  Be careful not to change</span><br><span class="line"><span class="meta">#</span> the 'exec tail' line above.</span><br><span class="line">menuentry 'Windows7'&#123;</span><br><span class="line">set root=(hd0,1)</span><br><span class="line">chainloader +1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="meta">$</span> reboot</span><br></pre></td></tr></table></figure>
+<h3 id="linux设置开机启动顺序"><a href="#linux设置开机启动顺序" class="headerlink" title="linux设置开机启动顺序"></a>linux设置开机启动顺序</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 安装linux系统</span><br><span class="line"></span><br><span class="line">a. vmlinuz initrd=initrd.img linux dd quiet</span><br><span class="line">b. vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意： 如果遇到uefi 启动必须改成legacy</span><br><span class="line"></span><br><span class="line">/var 5G</span><br><span class="line">/home 10G</span><br><span class="line">/usr 4G</span><br><span class="line">/ 39G</span><br><span class="line">2. 修改40_custom 重建引导</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo vi /etc/grub.d/40_custom</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">exec tail -n +3 $0</span><br><span class="line"><span class="meta">#</span><span class="bash"> This file provides an easy way to add custom menu entries.  Simply <span class="built_in">type</span> the</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> menu entries you want to add after this comment.  Be careful not to change</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> the <span class="string">'exec tail'</span> line above.</span></span><br><span class="line">menuentry 'Windows7'&#123;</span><br><span class="line">set root=(hd0,1)</span><br><span class="line">chainloader +1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grub2-mkconfig -o /boot/grub2/grub.cfg</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> reboot</span></span><br></pre></td></tr></table></figure>
 <h3 id="防火墙查看"><a href="#防火墙查看" class="headerlink" title="防火墙查看"></a>防火墙查看</h3><p><code>iptables -L -n</code> | <code>service iptables status</code> 查看防火墙</p>
 <h3 id="设置临时IP"><a href="#设置临时IP" class="headerlink" title="设置临时IP"></a>设置临时IP</h3><p><code>ifconfig eth0 192.168.39.200 netmask 255.255.255.0</code></p>
 <h3 id="iptables的运用"><a href="#iptables的运用" class="headerlink" title="iptables的运用"></a>iptables的运用</h3><p> 端口禁用</p>
@@ -558,7 +802,7 @@ whereis name
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 30000 -j ACCEPT</span><br><span class="line"></span><br><span class="line">这样就搞定了，一句就可以了，下面再多讲几句iptables防火墙一些规则。</span><br><span class="line"></span><br><span class="line">一、 700:800  表示700到800之间的所有端口</span><br><span class="line"></span><br><span class="line">二、 :800   表示800及以下所有端口</span><br><span class="line"></span><br><span class="line">三、 700:   表示700以及以上所有端口</span><br></pre></td></tr></table></figure>
 <h3 id="telnet退出"><a href="#telnet退出" class="headerlink" title="telnet退出"></a>telnet退出</h3><p>后来找到了正确的命令 <code>ctrl+]</code>  然后在telnet 命令行输入 <code>quit</code>  就可以退出了<br>顶</p>
 <h3 id="linux盘符更改-目录永久更改挂载"><a href="#linux盘符更改-目录永久更改挂载" class="headerlink" title="linux盘符更改 - 目录永久更改挂载"></a>linux盘符更改 - 目录永久更改挂载</h3><p><code>vim /etc/fstab</code> lv 挂载更改 修改参数</p>
-<h3 id="linux报-“Device-eth0-does-not-seem-to-be-present”解决办法"><a href="#linux报-“Device-eth0-does-not-seem-to-be-present”解决办法" class="headerlink" title="linux报 “Device eth0 does not seem to be present”解决办法"></a>linux报 “Device eth0 does not seem to be present”解决办法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用ifconfig查看发现缺少eth0，只有lo；用ifconfig -a查看发现多出了eth1的信息。</span><br><span class="line"></span><br><span class="line">解决办法1：</span><br><span class="line"><span class="meta">#</span> mv /etc/sysconfig/network-scripts/ifcfg-eth0  /etcsysconfig/network-scripts/ifcfg-eth1</span><br><span class="line">将eth0的mac地址改为eth1的mac地址，同时改变其DEVICE名称为eth1，再重启网络即可。</span><br><span class="line"></span><br><span class="line">解决办法2：</span><br><span class="line"><span class="meta">#</span> rm -rf /etc/udev/rules.d/70-persistent-net.rules</span><br><span class="line"><span class="meta">#</span> reboot</span><br></pre></td></tr></table></figure>
+<h3 id="linux报-“Device-eth0-does-not-seem-to-be-present”解决办法"><a href="#linux报-“Device-eth0-does-not-seem-to-be-present”解决办法" class="headerlink" title="linux报 “Device eth0 does not seem to be present”解决办法"></a>linux报 “Device eth0 does not seem to be present”解决办法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用ifconfig查看发现缺少eth0，只有lo；用ifconfig -a查看发现多出了eth1的信息。</span><br><span class="line"></span><br><span class="line">解决办法1：</span><br><span class="line"><span class="meta">#</span><span class="bash"> mv /etc/sysconfig/network-scripts/ifcfg-eth0  /etcsysconfig/network-scripts/ifcfg-eth1</span></span><br><span class="line">将eth0的mac地址改为eth1的mac地址，同时改变其DEVICE名称为eth1，再重启网络即可。</span><br><span class="line"></span><br><span class="line">解决办法2：</span><br><span class="line"><span class="meta">#</span><span class="bash"> rm -rf /etc/udev/rules.d/70-persistent-net.rules</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> reboot</span></span><br></pre></td></tr></table></figure>
 <h3 id="硬盘扩容-步骤"><a href="#硬盘扩容-步骤" class="headerlink" title="硬盘扩容 步骤"></a>硬盘扩容 步骤</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">vgs lvs</span><br><span class="line">linux -&gt; 扩展 -&gt; linux lvm -&gt; pv -&gt; vg -&gt; lv -&gt;  lvresize -&gt; resize2fs</span><br><span class="line"></span><br><span class="line">    在磁盘sdb上创建新分区</span><br><span class="line">    命令：fdisk /dev/sdb</span><br><span class="line">    输入 p 打印现有分区情况（还没有分区）</span><br><span class="line">    输入 n 新建分区</span><br><span class="line">    输入 p 为建立主分区（此时的p是在n后的，不是打印）</span><br><span class="line">    输入 2 为建立第二个主分区</span><br><span class="line">    分区起始位置可以直接回车，默认是651(如何是1则先建一个分区)</span><br><span class="line">    分区最后位置可以直接回车，默认为 1305</span><br><span class="line">    输入 p 打印分区情况，发现已建立一个分区 /dev/sdb2，但是 此分区为 Linux 格式</span><br><span class="line">    由于分区 /dev/sdb2 为 Linux 格式，我们需要改变系统标识符为Linux LVM格式：</span><br><span class="line">    输入 t 改变分区的属性</span><br><span class="line">    输入 2 表示改变第二个分区的属性</span><br><span class="line">    输入 8e 改变分区1为 Linux LVM格式</span><br><span class="line">    输入 p 打印分区情况，发现建立的分区 /dev/sdb1 为 Linux LVM 格式</span><br><span class="line">    输入 w 保存分区</span><br><span class="line">    使kernel重新读取分区表</span><br><span class="line">    命令：partprobe</span><br><span class="line">    但是出现了一些关于sdb的警告，重启系统</span><br><span class="line">    命令：reboot</span><br><span class="line">    再次使用 fdisk -l 查看系统内磁盘情况发现 /dev/sdb上已有一个 Linux LVM 格式的 /dev/sdb2分区</span><br><span class="line">    创建PV:</span><br><span class="line">    创建PV：pvcreate /dev/sdb2</span><br><span class="line">    查看系统PV：pvscan</span><br><span class="line">    这样我们就创建了一个 5.02G的PV</span><br><span class="line">    增加 VG容量:</span><br><span class="line">    增加VG：vgextend vg_test /dev/sdb2</span><br><span class="line">    查看VG：vgdisplay</span><br><span class="line">    这样我们就将vg_test增加了 5.02G（1284 个Free PE，要记住这个数字）</span><br><span class="line">    增加LV容量:</span><br><span class="line">    增加LV：lvresize -l +1284  /dev/vg_test/lv_test（1284是VG中Free PE的个数）</span><br><span class="line">    查看LV：lvdisplay</span><br><span class="line">    这样我们就将 lv_test 的容量增加至9.99G</span><br><span class="line">    增加文件系统的容量：</span><br><span class="line">    命令：resize2fs /dev/vg_test/lv_test</span><br><span class="line">    文件系统lv_test已经由 4.9G 增加至 9.9G</span><br><span class="line">    至此，大功告成！</span><br></pre></td></tr></table></figure>
 <h3 id="linux-sftp服务器搭建"><a href="#linux-sftp服务器搭建" class="headerlink" title="linux sftp服务器搭建"></a>linux sftp服务器搭建</h3><p>由于采用明文传输用户名和密码，FTP协议是不安全的。在同一机房中只要有一台服务器被攻击者控制，它就可能获取到其它服务器上的FTP密码，从而控制其它的服务器。</p>
 <p>当然，很多优秀的FTP服务器都已经支持加密。但如果服务器上已经开了SSH服务，我们完全可以使用SFTP来传输数据，何必要多开一个进程和端口呢？</p>
@@ -666,9 +910,9 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 <p>sudo chmod [u所属用户  g所属组  o其他用户  a所有用户]  [+增加权限  -减少权限]  [r  w  x]   目录名</p>
 <p>例如：有一个文件filename，权限为“-rw-r—-x” ,将权限值改为”-rwxrw-r-x”，用数值表示为765</p>
 <p>sudo chmod u+x g+w o+r  filename</p>
-<h2 id="SHELL基本命令"><a href="#SHELL基本命令" class="headerlink" title="SHELL基本命令"></a>SHELL基本命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>history                  显示在当前shell下命令历史</span><br><span class="line"><span class="meta">$</span>alias                      显示所有的命令别称</span><br><span class="line"><span class="meta">$</span>alias new_command='command'    将命令command别称为new_command</span><br><span class="line"><span class="meta">$</span>env                       显示所有的环境变量</span><br><span class="line"><span class="meta">$</span>export var=value    设置环境变量var为value</span><br></pre></td></tr></table></figure>
-<h2 id="显示硬盘、分区、CPU、内存信息"><a href="#显示硬盘、分区、CPU、内存信息" class="headerlink" title="显示硬盘、分区、CPU、内存信息"></a>显示硬盘、分区、CPU、内存信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>df -lh                           显示所有硬盘的使用状况</span><br><span class="line"><span class="meta">$</span>du -sh *                       显示当前目录下各个目录和文件的大小</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span>mount                          显示所有的硬盘分区挂载</span><br><span class="line"><span class="meta">$</span>mount partition path       挂在partition到路径path</span><br><span class="line"><span class="meta">$</span>umount partition            卸载partition</span><br><span class="line"><span class="meta">$</span>sudo fdisk -l                  显示所有的分区</span><br><span class="line"><span class="meta">$</span>sudo fdisk device            为device(比如/dev/sdc)创建分区表。 进入后选择n, p, w</span><br><span class="line"><span class="meta">$</span>sudo mkfs -t ext3 partition  格式化分区patition(比如/dev/sdc1)</span><br><span class="line">                                      修改 /etc/fstab，以自动挂载分区。增加行：</span><br><span class="line">                                      /dev/sdc1  path(mount point) ext3 defaults 0 0</span><br><span class="line"><span class="meta">$</span>arch                            显示架构</span><br><span class="line"><span class="meta">$</span>cat /proc/cpuinfo          显示CPU信息</span><br><span class="line"><span class="meta">$</span>cat /proc/meminfo         显示内存信息</span><br><span class="line"><span class="meta">$</span>free                            显示内存使用状况</span><br></pre></td></tr></table></figure>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>touch filename    如果文件不存在，创建一个空白文件；如果文件存在，更新文件读取和修改时间。</span><br><span class="line"><span class="meta">$</span>rm filename      删除文件</span><br><span class="line"><span class="meta">$</span>cp file1 file2    复制file1为file2</span><br><span class="line"><span class="meta">$</span>ls -l path        显示文件和文件相关信息</span><br><span class="line"><span class="meta">$</span>mkdir dir        创建dir文件夹</span><br><span class="line"><span class="meta">$</span>mkdir -p path    递归创建路径path上的所有文件夹</span><br><span class="line"><span class="meta">$</span>rmdir dir        删除dir文件夹，dir必须为空文件夹。</span><br><span class="line"><span class="meta">$</span>rm -r dir        删除dir文件夹，以及其包含的所有文件</span><br><span class="line"><span class="meta">$</span>file filename    文件filename的类型描述</span><br><span class="line"><span class="meta">$</span>chown username:groupname filename    更改文件的拥有者为owner，拥有组为group</span><br><span class="line"><span class="meta">$</span>chmod 755 filename更改文件的权限为755: owner r+w+x, group: r+x, others: r+x</span><br><span class="line"><span class="meta">$</span>od -c filename    以ASCII字符显示文件</span><br><span class="line"><span class="meta">$</span>cat filename      显示文件</span><br><span class="line"><span class="meta">$</span>cat file1 file2  连接显示file1和file2</span><br><span class="line"><span class="meta">$</span>head -1 filename  显示文件第一行</span><br><span class="line"><span class="meta">$</span>tail -5 filename  显示文件倒数第五行</span><br><span class="line"><span class="meta">$</span>diff file1 file2  显示file1和file2的差别</span><br><span class="line"><span class="meta">$</span>sort filename    对文件中的行排序，并显示</span><br><span class="line"><span class="meta">$</span>sort -f filename  排序时，不考虑大小写</span><br><span class="line"><span class="meta">$</span>sort -u filename  排序，并去掉重复的行</span><br><span class="line"><span class="meta">$</span>uniq filename    显示文件filename中不重复的行 (内容相同，但不相邻的行，不算做重复)</span><br><span class="line"><span class="meta">$</span>wc filename      统计文件中的字符、词和行数</span><br><span class="line"><span class="meta">$</span>wc -l filename    统计文件中的行数</span><br></pre></td></tr></table></figure>
+<h2 id="SHELL基本命令"><a href="#SHELL基本命令" class="headerlink" title="SHELL基本命令"></a>SHELL基本命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">history</span>                  显示在当前shell下命令历史</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">alias</span>                      显示所有的命令别称</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">alias</span> new_command=<span class="string">'command'</span>    将命令<span class="built_in">command</span>别称为new_command</span></span><br><span class="line"><span class="meta">$</span><span class="bash">env                       显示所有的环境变量</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">export</span> var=value    设置环境变量var为value</span></span><br></pre></td></tr></table></figure>
+<h2 id="显示硬盘、分区、CPU、内存信息"><a href="#显示硬盘、分区、CPU、内存信息" class="headerlink" title="显示硬盘、分区、CPU、内存信息"></a>显示硬盘、分区、CPU、内存信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">df -lh                           显示所有硬盘的使用状况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">du -sh *                       显示当前目录下各个目录和文件的大小</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">mount                          显示所有的硬盘分区挂载</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mount partition path       挂在partition到路径path</span></span><br><span class="line"><span class="meta">$</span><span class="bash">umount partition            卸载partition</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sudo fdisk -l                  显示所有的分区</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sudo fdisk device            为device(比如/dev/sdc)创建分区表。 进入后选择n, p, w</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sudo mkfs -t ext3 partition  格式化分区patition(比如/dev/sdc1)</span></span><br><span class="line">                                      修改 /etc/fstab，以自动挂载分区。增加行：</span><br><span class="line">                                      /dev/sdc1  path(mount point) ext3 defaults 0 0</span><br><span class="line"><span class="meta">$</span><span class="bash">arch                            显示架构</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat /proc/cpuinfo          显示CPU信息</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat /proc/meminfo         显示内存信息</span></span><br><span class="line"><span class="meta">$</span><span class="bash">free                            显示内存使用状况</span></span><br></pre></td></tr></table></figure>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">touch filename    如果文件不存在，创建一个空白文件；如果文件存在，更新文件读取和修改时间。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rm filename      删除文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp file1 file2    复制file1为file2</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ls -l path        显示文件和文件相关信息</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir dir        创建dir文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p path    递归创建路径path上的所有文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rmdir dir        删除dir文件夹，dir必须为空文件夹。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rm -r dir        删除dir文件夹，以及其包含的所有文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">file filename    文件filename的类型描述</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chown username:groupname filename    更改文件的拥有者为owner，拥有组为group</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chmod 755 filename更改文件的权限为755: owner r+w+x, group: r+x, others: r+x</span></span><br><span class="line"><span class="meta">$</span><span class="bash">od -c filename    以ASCII字符显示文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat filename      显示文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat file1 file2  连接显示file1和file2</span></span><br><span class="line"><span class="meta">$</span><span class="bash">head -1 filename  显示文件第一行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">tail -5 filename  显示文件倒数第五行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">diff file1 file2  显示file1和file2的差别</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sort filename    对文件中的行排序，并显示</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sort -f filename  排序时，不考虑大小写</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sort -u filename  排序，并去掉重复的行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">uniq filename    显示文件filename中不重复的行 (内容相同，但不相邻的行，不算做重复)</span></span><br><span class="line"><span class="meta">$</span><span class="bash">wc filename      统计文件中的字符、词和行数</span></span><br><span class="line"><span class="meta">$</span><span class="bash">wc -l filename    统计文件中的行数</span></span><br></pre></td></tr></table></figure>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
 <li><p>/- 根<br>每一个文件和目录从根目录开始。<br>只有root用户具有该目录下的写权限。请注意，/root是root用户的主目录，这与/.不一样</p>
 </li>
@@ -1063,7 +1307,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1076,7 +1320,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
