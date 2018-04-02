@@ -295,6 +295,237 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/flyway的基本使用-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="changfeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宫商角徵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/flyway的基本使用-md/" itemprop="url">flyway的基本使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T22:42:11+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="今天我们来看看flyway如何去使用"><a href="#今天我们来看看flyway如何去使用" class="headerlink" title="今天我们来看看flyway如何去使用"></a>今天我们来看看flyway如何去使用</h2><blockquote>
+<p>flyway 是一款数据库软件支持主流的数据的版本管理，对于多个数据库可以进行同步更新，今天我们来看看具体如何使用</p>
+</blockquote>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p><a href="https://pan.baidu.com/s/1COkuNKMxxykRzWCTaLhkPg" target="_blank" rel="noopener">下载flyway命令行工具</a></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
+<li>flyway migrate</li>
+</ul>
+<blockquote>
+<p>此命令会自动检查数据库脚本是否有变化，如果有变化，则执行脚本，更新数据库版本，如果数据库初始状态是空库，则会自动创建schema_version 表，用于存储数据库操作的版本记录，<br>只要数据库脚本有变化，都需要执行此命令。</p>
+</blockquote>
+<ul>
+<li>flyway clean</li>
+</ul>
+<blockquote>
+<p>清除schema_version中记录所有表结构，视图，存储过程，函数以及所有的数据等都会被清除。</p>
+</blockquote>
+<ul>
+<li>flyway info</li>
+</ul>
+<blockquote>
+<p>打印schema_version中记录信息</p>
+</blockquote>
+<ul>
+<li>flyway validate</li>
+</ul>
+<blockquote>
+<p>Validate是指验证已经Apply的Migrations是否有变更，Flyway是默认是开启验证的。</p>
+</blockquote>
+<ul>
+<li>flyway baseline</li>
+</ul>
+<blockquote>
+<p>Baseline 是指数据库非空状态下使用flyway首先执行的命令，用于创建schema_vision表。</p>
+</blockquote>
+<ul>
+<li>flyway repair</li>
+</ul>
+<blockquote>
+<p>Repair会修复Metadata表的错误，通常有两种用途：</p>
+</blockquote>
+<p><code>注意</code>: 加上-X显示详情 如: <code>flyway -X info</code></p>
+<h2 id="数据库支持类型"><a href="#数据库支持类型" class="headerlink" title="数据库支持类型"></a>数据库支持类型</h2><p>Oracle：10g及更新所有版本（包括 Amazon RDS）<br>SQL Server：2008及更新版本（包括 Amazon RDS）<br>SQL Azure：最新版本<br>MySQL：5.1及更新版本（包括 Amazon RDS &amp; Google Cloud SQL）<br>MariaDB：10.0及更新版本（包括 Amazon RDS）<br>Phoenix：4.2.2及更新版本<br>PostgreSQL：9.0及更新版本（包括 Heroku &amp; Amazon RDS）<br>Vertica：6.5及更新版本<br>AWS Redshift：最新版本<br>DB2：9.7及更新版本<br>DB2 z/OS：9.1及更新版本<br>Derby：10.8.2.2及更新版本<br>H2：1.2.137及更新版本<br>Hsql：1.8及更新版本<br>SQLite：3.7.2及更新版本<br>SAP HANA：最新版本<br>solidDB：6.5及更新版本<br>Sybase ASE：12.5及更新版本</p>
+<h2 id="属性配置"><a href="#属性配置" class="headerlink" title="属性配置"></a>属性配置</h2><p>flyway.driver=org.hsqldb.jdbcDriver<br>flyway.url=jdbc:hsqldb:file:/db/flyway_sample<br>flyway.user=SA<br>flyway.password=mySecretPwd<br>flyway.schemas=schema1,schema2,schema3<br>flyway.table=schema_history<br>flyway.locations=classpath:com.mycomp.migration,database/migrations,filesystem:/sql-migrations<br>flyway.sqlMigrationPrefix=Migration-<br>flyway.sqlMigrationSeparator=__<br>flyway.sqlMigrationSuffix=-OK.sql<br>flyway.encoding=ISO-8859-1<br>flyway.placeholderReplacement=true<br>flyway.placeholders.aplaceholder=value<br>flyway.placeholders.otherplaceholder=value123<br>flyway.placeholderPrefix=#[<br>flyway.placeholderSuffix=]<br>flyway.resolvers=com.mycomp.project.CustomResolver,com.mycomp.project.AnotherResolver<br>flyway.callbacks=com.mycomp.project.CustomCallback,com.mycomp.project.AnotherCallback<br>flyway.target=5.1<br>flyway.outOfOrder=false<br>flyway.validateOnMigrate=true<br>flyway.cleanOnValidationError=false<br>flyway.baselineOnMigrate=false</p>
+<h2 id="实例介绍，这里我以mysql为例"><a href="#实例介绍，这里我以mysql为例" class="headerlink" title="实例介绍，这里我以mysql为例"></a>实例介绍，这里我以mysql为例</h2><ul>
+<li>第一步：建立两个测试数据库 demo1, demo2</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> demo1;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> demo2;</span><br></pre></td></tr></table></figure>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/88138324.jpg" alt=""></p>
+<ul>
+<li>第二步配置 \flyway-5.0.7\conf\flyway.conf</li>
+</ul>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/25711198.jpg" alt=""></p>
+<ul>
+<li>第三步：生成基本版本</li>
+</ul>
+<p><code>flyway -X baseline</code></p>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/81337188.jpg" alt=""></p>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/33626480.jpg" alt=""></p>
+<ul>
+<li>第四步: 编写版本控制sql,在图中位子写下这三个控制脚本</li>
+</ul>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/27884726.jpg" alt=""></p>
+<ul>
+<li>V1.1__addTable.sql</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> testA(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>V2.0__addTable.sql</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> testB(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>V3.0__dropTable.sql</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> testA;</span><br></pre></td></tr></table></figure>
+<p><code>注意: 是两个下划线__</code></p>
+<ul>
+<li>执行 flyway migrate</li>
+</ul>
+<blockquote>
+<p>如下图是不是只剩下B表了</p>
+</blockquote>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/27884726.jpg" alt=""></p>
+<h2 id="其他数据库做同步工作好了看好"><a href="#其他数据库做同步工作好了看好" class="headerlink" title="其他数据库做同步工作好了看好"></a>其他数据库做同步工作好了看好</h2><ul>
+<li>替换数据库链接，密码注意保持和想同步的数据库一致，执行<code>flyway migrate</code></li>
+</ul>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/43800477.jpg" alt=""></p>
+<ul>
+<li>看Demo2是不是立马和Demo1一样了</li>
+</ul>
+<p><img src="http://otxoa8jsq.bkt.clouddn.com/18-4-2/47506138.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/sql需要基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1307,12 +1538,21 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -1320,7 +1560,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
